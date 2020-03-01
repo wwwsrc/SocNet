@@ -1,0 +1,28 @@
+.dialogs_container {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+.dialogs {
+  /* text-decoration: none; */
+  list-style-type: none;
+}
+
+.dialogs_item > a {
+  text-decoration: none;
+  padding: 2px;
+  font-weight: normal;
+}
+
+.messages {
+  list-style-type: none;
+}
+
+.messages_item {
+  padding: 2px;
+}
+
+/* подсвечен первый юзер */
+a.activeLink {
+  color: palevioletred;
+  font-weight: bolder;
+}

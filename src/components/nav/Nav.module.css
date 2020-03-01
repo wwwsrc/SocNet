@@ -1,0 +1,28 @@
+.nav {
+  grid-area: nav;
+  background-color: #2e2e2e;
+  list-style-type: none;
+  padding: 20px;
+}
+.navMenu {
+  list-style-type: none;
+}
+
+.item a {
+  text-decoration: none;
+  color: lightskyblue;
+}
+.item:hover {
+  font-weight: bolder;
+}
+a.activeLink {
+  color: gold;
+  font-weight: bolder;
+}
+
+.item__friends {
+  margin-top: 80px;
+}
+/* .item a:visited {
+  color: green;
+} */

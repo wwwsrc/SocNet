@@ -1,0 +1,12 @@
+.item {
+  color: rgb(58, 48, 48);
+}
+.item img {
+  border-radius: 50%;
+  width: 60px;
+}
+
+.like {
+  color: black;
+  font-weight: bold;
+}
