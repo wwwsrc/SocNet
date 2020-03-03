@@ -2,8 +2,7 @@ import React from "react";
 import css from "./Nav.module.css";
 import { NavLink } from "react-router-dom";
 import Friends from "./Friends";
-import userName from "../redux/state";
-const Nav = () => (
+const Nav = props => (
   <nav className={css.nav}>
     <ul className={css.navMenu}>
       <li className={css.item}>
@@ -38,7 +37,8 @@ const Nav = () => (
       <NavLink to="/friends" activeClassName={css.activeLink}>
         FRIENDS
       </NavLink>
-      <Friends userName={userName.messagesPage.dialogs} />
+      <Friends userName={props.sidebarUser} />
+      {console.log("here", props)}
     </div>
   </nav>
 );

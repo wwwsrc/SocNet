@@ -9,7 +9,11 @@ const Profile = props => {
     <div className={css.wrapper}>
       Main content is here
       <ProfileInfo />
-      <Mypost postData={props.postData} />
+      <Mypost
+        profilePage={props.profilePage}
+        addPost={props.addPost}
+        updateNewPostText={props.updateNewPostText}
+      />
     </div>
   );
 };

@@ -27,6 +27,11 @@ const Dialogs = props => {
   //   { id: 4, message: "Incredibele" },
   //   { id: 5, message: "Zebis" }
   // ];
+  let newMessage = React.createRef();
+  let addMessage = () => {
+    let message = newMessage.current.value;
+    alert(message);
+  };
   return (
     <div className={css.dialogs_container}>
       <div>
@@ -43,6 +48,10 @@ const Dialogs = props => {
           ))}
         </ul>
       </div>
+      <div>
+        <textarea ref={newMessage}></textarea>
+      </div>
+      <button onClick={addMessage}>Add post</button>
     </div>
   );
 };
