@@ -1,3 +1,5 @@
+const ADD_POST = "ADD-POST";
+const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
 let store = {
   _state: {
     profilePage: {
@@ -10,7 +12,7 @@ let store = {
         },
         { id: 3, message: "Coronavirus is coming!", likesCount: 1478 }
       ],
-      newPostText: "start text"
+      newPostText: "type post here..."
     },
     messagesPage: {
       dialogs: [
@@ -40,24 +42,48 @@ let store = {
   getState() {
     return this._state;
   },
-  addPost() {
-    let newPost = {
-      id: 55,
-      message: this._state.profilePage.newPostText,
-      likesCount: 12
-    };
-    this._state.profilePage.posts.push(newPost);
-    this._state.profilePage.newPostText = "";
-    this._callSubscriber(this._state);
-  },
-  updateNewPostText(newText) {
-    this._state.profilePage.newPostText = newText;
-    this._callSubscriber(this._state);
-  },
   subscribe(observer) {
     this._callSubscriber = observer;
+  },
+
+  // addPost() {
+  //   let newPost = {
+  //     id: 55,
+  //     message: this._state.profilePage.newPostText,
+  //     likesCount: 12
+  //   };
+  //   this._state.profilePage.posts.push(newPost);
+  //   this._state.profilePage.newPostText = "";
+  //   this._callSubscriber(this._state);
+  // },
+  // updateNewPostText(newText) {
+  //   this._state.profilePage.newPostText = newText;
+  //   this._callSubscriber(this._state);
+  // },
+
+  dispatch(action) {
+    // debugger;
+    if (action.type === "ADD-POST") {
+      let newPost = {
+        id: 55,
+        message: this._state.profilePage.newPostText,
+        likesCount: 12
+      };
+      this._state.profilePage.posts.push(newPost);
+      this._state.profilePage.newPostText = "";
+      this._callSubscriber(this._state);
+    } else if (action.type === "UPDATE-POST-TEXT") {
+      this._state.profilePage.newPostText = action.payload;
+      this._callSubscriber(this._state);
+    }
   }
 };
-
+export const addPostActionCreator = () => ({
+  type: ADD_POST
+});
+export const updatePostTextActionCreator = payload => ({
+  type: UPDATE_POST_TEXT,
+  payload: payload
+});
 export default store;
 // window.state = state;
