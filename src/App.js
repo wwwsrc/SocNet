@@ -30,6 +30,8 @@ const App = props => {
             <Dialogs
               userData={props.state.messagesPage.dialogs}
               messageData={props.state.messagesPage.messages}
+              newMessageBody={props.state.messagesPage.newMessageBody}
+              store={props.store}
             />
           )}
         />
