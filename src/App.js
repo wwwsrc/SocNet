@@ -8,6 +8,7 @@ import News from "./components/news/News";
 import Music from "./components/music/Music";
 import Setting from "./components/settings/Settings";
 import { Route } from "react-router-dom";
+import DialogsContainer from "./components/dialogs/DialogsContainer";
 
 const App = props => {
   return (
@@ -19,21 +20,11 @@ const App = props => {
         {/* <Route path="/dialogs" component={Dialogs} /> */}
 
         <Route path="/profile">
-          <Profile
-            profilePage={props.state.profilePage}
-            dispatch={props.dispatch}
-          />
+          <Profile store={props.store} />
         </Route>
         <Route
           path="/dialogs"
-          render={() => (
-            <Dialogs
-              userData={props.state.messagesPage.dialogs}
-              messageData={props.state.messagesPage.messages}
-              newMessageBody={props.state.messagesPage.newMessageBody}
-              store={props.store}
-            />
-          )}
+          render={() => <DialogsContainer store={props.store} />}
         />
         <Route path="/news">
           <News />

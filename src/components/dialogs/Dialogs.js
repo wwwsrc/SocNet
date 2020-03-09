@@ -17,32 +17,34 @@ const DialogItem = props => (
 // const Message = props => <li className={css.messages_item}>{props.message}</li>;
 
 const Dialogs = props => {
-  let state = props.store.getState().messagesPage;
-  console.log("a12", state);
+  let state = props.messagesPage;
+  // console.log("a12", state);
   let newMessageBody = props.newMessageBody;
-  let newMessage = React.createRef();
+  // let newMessage = React.createRef();
 
   let onSendMessageClick = () => {
-    props.store.dispatch(sendMessageCreator());
+    props.sendMessage();
+    // props.store.dispatch(sendMessageCreator());
   };
 
   let onNewMessageChange = event => {
     let body = event.target.value;
-    props.store.dispatch(updateNewMessageBodyCreator(body));
+    props.updateNewMessageBody(body);
+    // props.store.dispatch(updateNewMessageBodyCreator(body));
   };
 
   return (
     <div className={css.dialogs_container}>
       <div>
         <ul className={css.dialogs}>
-          {props.userData.map(el => (
+          {state.dialogs.map(el => (
             <DialogItem id={el.id} name={el.name} key={el.id} />
           ))}
         </ul>
       </div>
       <div>
         <ul className={css.messages}>
-          {props.messageData.map(elem => (
+          {state.messages.map(elem => (
             <Message id={elem.id} message={elem.message} key={elem.id} />
           ))}
         </ul>

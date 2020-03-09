@@ -1,4 +1,4 @@
-import store from "./components/redux/state";
+import store from "./components/redux/redux_store";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
@@ -19,5 +19,9 @@ let renderTree = state => {
 };
 renderTree(store.getState());
 
-store.subscribe(renderTree);
+store.subscribe(() => {
+  let state = store.getState();
+  renderTree(state);
+});
+// store.subscribe(renderTree);
 // serviceWorker.unregister();
