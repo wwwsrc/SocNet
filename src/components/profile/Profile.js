@@ -9,7 +9,7 @@ const Profile = props => {
     <div className={css.wrapper}>
       Main content is here
       <ProfileInfo />
-      <MypostContainer store={props.store} />
+      <MypostContainer />
     </div>
   );
 };

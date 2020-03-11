@@ -18,7 +18,7 @@ const DialogItem = props => (
 
 const Dialogs = props => {
   let state = props.messagesPage;
-  // console.log("a12", state);
+  console.log("a12", props);
   let newMessageBody = props.newMessageBody;
   // let newMessage = React.createRef();
 

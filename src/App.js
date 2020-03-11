@@ -3,7 +3,6 @@ import "./App.css";
 import Header from "./components/header/Header.js";
 import Nav from "./components/nav/Nav.js";
 import Profile from "./components/profile/Profile";
-import Dialogs from "./components/dialogs/Dialogs";
 import News from "./components/news/News";
 import Music from "./components/music/Music";
 import Setting from "./components/settings/Settings";
@@ -14,18 +13,15 @@ const App = props => {
   return (
     <div className="app-wrapper">
       <Header />
-      <Nav sidebarUser={props.state.sidebarUser} />
-      {console.log("props.state.sidebarUser", props.state.sidebarUser)}
+      <Nav />
+
       <div className="app-wrapper-content">
         {/* <Route path="/dialogs" component={Dialogs} /> */}
 
         <Route path="/profile">
-          <Profile store={props.store} />
+          <Profile />
         </Route>
-        <Route
-          path="/dialogs"
-          render={() => <DialogsContainer store={props.store} />}
-        />
+        <Route path="/dialogs" render={() => <DialogsContainer />} />
         <Route path="/news">
           <News />
         </Route>

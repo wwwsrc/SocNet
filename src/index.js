@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
-// import * as serviceWorker from "./serviceWorker";
+import { Provider } from "react-redux";
 
 // import { addPost } from "./components/redux/state";
 // import { updateNewPostText } from "./components/redux/state";
@@ -12,7 +12,13 @@ console.log(store.getState());
 let renderTree = state => {
   ReactDOM.render(
     <BrowserRouter>
-      <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
+      <Provider store={store}>
+        <App
+        // state={state}
+        // dispatch={store.dispatch.bind(store)}
+        // store={store}
+        />
+      </Provider>
     </BrowserRouter>,
     document.getElementById("root")
   );

@@ -37,7 +37,7 @@ const Nav = props => (
       <NavLink to="/friends" activeClassName={css.activeLink}>
         FRIENDS
       </NavLink>
-      <Friends userName={props.sidebarUser} />
+      {/* <Friends userName={props.sidebarUser} /> */}
       {console.log("here", props)}
     </div>
   </nav>
