@@ -9,24 +9,29 @@ let initialState = {
       message: "This is my photo from zkazachnoe Bali",
       likesCount: 456
     },
-    { id: 3, message: "Coronavirus is coming!", likesCount: 1478 }
+    { id: 3, message: "Coronavirus is coming!", likesCount: 666 }
   ],
   newPostText: "type post here..."
 };
 const profileReducer = (state = initialState, action) => {
+  console.log("rrr", state);
   switch (action.type) {
-    case ADD_POST:
+    case ADD_POST: {
       let newPost = {
-        id: 55,
+        id: 5,
         message: state.newPostText,
         likesCount: 12
       };
-      state.posts.push(newPost);
-      state.newPostText = "";
-      return state;
+      let nextState = {
+        ...state,
+        posts: [...state.posts, newPost],
+        newPostText: ""
+      };
+      return nextState;
+    }
     case UPDATE_POST_TEXT:
-      state.newPostText = action.payload;
-      return state;
+      return { ...state, newPostText: action.payload };
+
     default:
       return state;
   }

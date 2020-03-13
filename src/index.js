@@ -8,26 +8,20 @@ import { Provider } from "react-redux";
 
 // import { addPost } from "./components/redux/state";
 // import { updateNewPostText } from "./components/redux/state";
-console.log(store.getState());
-let renderTree = state => {
-  ReactDOM.render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <App
-        // state={state}
-        // dispatch={store.dispatch.bind(store)}
-        // store={store}
-        />
-      </Provider>
-    </BrowserRouter>,
-    document.getElementById("root")
-  );
-};
-renderTree(store.getState());
+// console.log(store.getState());
 
-store.subscribe(() => {
-  let state = store.getState();
-  renderTree(state);
-});
+ReactDOM.render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <App
+      // state={state}
+      // dispatch={store.dispatch.bind(store)}
+      // store={store}
+      />
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById("root")
+);
+
 // store.subscribe(renderTree);
 // serviceWorker.unregister();
