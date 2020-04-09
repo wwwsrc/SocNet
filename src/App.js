@@ -1,26 +1,27 @@
 import React from "react";
 import "./App.css";
-import Header from "./components/header/Header.js";
+import HeaderContainer from "./components/header/HeaderContainer.js";
 import Nav from "./components/nav/Nav.js";
-import Profile from "./components/profile/Profile";
+import ProfileContainer from "./components/profile/ProfileContainer";
 import News from "./components/news/News";
 import Music from "./components/music/Music";
 import Setting from "./components/settings/Settings";
 import { Route } from "react-router-dom";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import Friends from "./components/nav/Friends";
 
 const App = props => {
   return (
     <div className="app-wrapper">
-      <Header />
+      <HeaderContainer />
       <Nav />
 
       <div className="app-wrapper-content">
         {/* <Route path="/dialogs" component={Dialogs} /> */}
 
-        <Route path="/profile">
-          <Profile />
+        <Route path="/profile/:userId?">
+          <ProfileContainer />
         </Route>
         <Route path="/dialogs" render={() => <DialogsContainer />} />
         <Route path="/users">
@@ -31,6 +32,7 @@ const App = props => {
         </Route>
         <Route path="/music" component={Music} />
         <Route path="/settings" component={Setting} />
+        {/* <Route path="/friends" component={Friends} /> */}
       </div>
     </div>
   );

@@ -2,10 +2,10 @@ import React from "react";
 import css from "./Dialogs.module.css";
 import DialogItem from "./dialogItem/DialogItem";
 import Message from "./message/Message";
-import {
-  sendMessageCreator,
-  updateNewMessageBodyCreator
-} from "../redux/messages_reducer";
+// import {
+//   sendMessageCreator,
+//   updateNewMessageBodyCreator
+// } from "../redux/messages_reducer";
 /*
 const DialogItem = props => (
   <li className={css.dialogs_item}>

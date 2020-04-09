@@ -1,81 +1,105 @@
 import React from "react";
 import css from "./users.module.css";
-import axios from "axios";
 import userDefaultPhoto from "../../assets/images/avatar-default.png";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
 
-let Users = props => {
-  //   let users = [];
-  console.log(props.users.length);
-  if (props.users.length === 0) {
-    axios
-      .get("https://social-network.samuraijs.com/api/1.0/users")
-      .then(result => {
-        console.log(result.data.items);
-        props.setUsers(result.data.items);
-      });
+const Users = props => {
+  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+  let pages = [];
+  for (let i = 1; i <= pagesCount; i++) {
+    pages.push(i);
   }
-  // props.setUsers([
-  //   {
-  //     id: 1,
-  //     photoUrl:
-  //       "https://www.meme-arsenal.com/memes/d2ee67ecacbc1954c4add8f335a1699d.jpg",
-  //     followed: false,
-  //     fullName: "Li Kahn",
-  //     status: "student",
-  //     location: { city: "Minsk", country: "Belarus" }
-  //   },
-  //   {
-  //     id: 2,
-  //     photoUrl:
-  //       "https://www.meme-arsenal.com/memes/d2ee67ecacbc1954c4add8f335a1699d.jpg",
-  //     followed: true,
-  //     fullName: "Jaden",
-  //     status: "worker",
-  //     location: { city: "London", country: "England" }
-  //   },
-  //   {
-  //     id: 3,
-  //     photoUrl:
-  //       "https://www.meme-arsenal.com/memes/d2ee67ecacbc1954c4add8f335a1699d.jpg",
-  //     followed: false,
-  //     fullName: "Mike",
-  //     status: "Director",
-  //     location: { city: "Kiev", country: "Ukraine" }
-  //   }
-  // ]);
-
   return (
     <div>
+      <div>
+        {pages.map(p => {
+          return (
+            <span
+              className={props.currentPage === p ? css.selectedPage : null}
+              onClick={() => {
+                props.onPageChanged(p);
+              }}
+            >
+              {p}
+            </span>
+          );
+        })}
+      </div>
+
+      {/* <button onClick={this.getUsers}>Get usrs</button> */}
       {props.users.map(users => (
         <div key={users.id}>
           <span>
             <div>
               {console.log(users.photoUrl)}
-              <img
-                src={
-                  users.photos.small != null
-                    ? users.photos.small
-                    : userDefaultPhoto
-                }
-                className={css.userPhoto}
-              />
+              <NavLink to={"/profile/" + users.id}>
+                <img
+                  src={
+                    users.photos.small != null
+                      ? users.photos.small
+                      : userDefaultPhoto
+                  }
+                  className={css.userPhoto}
+                />
+              </NavLink>
             </div>
             <div>
               {users.followed ? (
                 <button
+                  disabled={props.followingInProgress.some(
+                    id => id === users.id
+                  )}
                   onClick={() => {
-                    props.unfollow(users.id);
+                    // debugger;
+                    props.toggleFollowingInProgress(true, users.id);
+                    axios
+                      .delete(
+                        `https://social-network.samuraijs.com/api/1.0//follow/${users.id}`,
+                        {
+                          withCredentials: true,
+                          headers: {
+                            "API-KEY": "2b9c8bf9-f831-4fd3-8f36-c126acd84ce1"
+                          }
+                        }
+                      )
+                      .then(result => {
+                        if (result.data.resultCode == 0) {
+                          props.unfollow(users.id);
+                        }
+                        props.toggleFollowingInProgress(false, users.id);
+                      });
                   }}
                 >
-                  Follow
+                  Unfollow
                 </button>
               ) : (
                 <button
+                  disabled={props.followingInProgress.some(
+                    id => id === users.id
+                  )}
                   onClick={() => {
-                    props.follow(users.id);
+                    props.toggleFollowingInProgress(true, users.id);
+                    axios
+                      .post(
+                        `https://social-network.samuraijs.com/api/1.0//follow/${users.id}`,
+                        {},
+                        {
+                          withCredentials: true,
+                          headers: {
+                            "API-KEY": "2b9c8bf9-f831-4fd3-8f36-c126acd84ce1"
+                          }
+                        }
+                      )
+                      .then(result => {
+                        if (result.data.resultCode == 0) {
+                          props.follow(users.id);
+                        }
+                        props.toggleFollowingInProgress(false, users.id);
+                      });
                   }}
                 >
-                  unFollow
+                  Follow
                 </button>
               )}
             </div>

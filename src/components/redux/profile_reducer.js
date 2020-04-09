@@ -1,5 +1,6 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
 
 let initialState = {
   posts: [
@@ -11,10 +12,10 @@ let initialState = {
     },
     { id: 3, message: "Coronavirus is coming!", likesCount: 666 }
   ],
-  newPostText: "type post here..."
+  newPostText: "type post here...",
+  profile: null
 };
 const profileReducer = (state = initialState, action) => {
-  console.log("rrr", state);
   switch (action.type) {
     case ADD_POST: {
       let newPost = {
@@ -31,7 +32,8 @@ const profileReducer = (state = initialState, action) => {
     }
     case UPDATE_POST_TEXT:
       return { ...state, newPostText: action.payload };
-
+    case SET_USER_PROFILE:
+      return { ...state, profile: action.profile };
     default:
       return state;
   }
@@ -42,5 +44,9 @@ export const addPostActionCreator = () => ({
 export const updatePostTextActionCreator = payload => ({
   type: UPDATE_POST_TEXT,
   payload: payload
+});
+export const setUserProfile = profile => ({
+  type: SET_USER_PROFILE,
+  profile: profile
 });
 export default profileReducer;
