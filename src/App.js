@@ -10,8 +10,9 @@ import { Route } from "react-router-dom";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import Friends from "./components/nav/Friends";
+import Login from "./components/login/login";
 
-const App = props => {
+const App = (props) => {
   return (
     <div className="app-wrapper">
       <HeaderContainer />
@@ -32,6 +33,7 @@ const App = props => {
         </Route>
         <Route path="/music" component={Music} />
         <Route path="/settings" component={Setting} />
+        <Route path="/login" component={Login} />
         {/* <Route path="/friends" component={Friends} /> */}
       </div>
     </div>

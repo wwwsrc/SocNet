@@ -1,14 +1,15 @@
 import React from "react";
 // import css from "./Profile.module.css";
 import ProfileInfo from "./profileInfo/ProfileInfo.js";
+import MypostContainer from "./MyPosts/MypostContainer.js";
 import css from "./Profile.module.css";
 
-const Profile = props => {
+const Profile = (props) => {
   return (
     <div className={css.wrapper}>
       Main content is here
       <ProfileInfo profile={props.profile} />
-      {/* <MypostContainer /> */}
+      <MypostContainer />
     </div>
   );
 };
