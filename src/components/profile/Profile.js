@@ -8,7 +8,12 @@ const Profile = (props) => {
   return (
     <div className={css.wrapper}>
       Main content is here
-      <ProfileInfo profile={props.profile} />
+      {console.log(props)}
+      <ProfileInfo
+        profile={props.profile}
+        status={props.status}
+        updateStatus={props.updateStatus}
+      />
       <MypostContainer />
     </div>
   );

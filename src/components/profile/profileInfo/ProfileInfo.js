@@ -21,7 +21,11 @@ const ProfileInfo = (props) => {
       <div className={css.descriptionBlock}>
         {/* {props.profile ? <img src={props.profile.photos.large} /> : <p>fuck</p>} */}
         <img src={props.profile.photos.large} />
-        <ProfileStatus status="hello friend" />
+        {console.log(props)}
+        <ProfileStatus
+          status={props.status}
+          updateStatus={props.updateStatus}
+        />
         <p>{props.profile.aboutMe}</p>
       </div>
       <time dateTime="2014-09-25"> 25 Сент 2014</time>
